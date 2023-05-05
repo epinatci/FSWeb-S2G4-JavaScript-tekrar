@@ -29,9 +29,11 @@ function KareninAlani(kenaruzunlugu){
 			4. Hesaplanan çemberin çevresi döndürülecektir.
 		*/
 
-function CemberinCevresi(/* kodlar buraya */){
-	/* kodlar buraya */
+function CemberinCevresi(cemberinYaricapi){
+	return cemberinYaricapi *2 *pi
 }
+
+console.log(CemberinCevresi(5));
 
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
@@ -47,10 +49,12 @@ function CemberinCevresi(/* kodlar buraya */){
 			4. Hesaplanan çemberin alanı döndürülecektir.
 		*/
 		
-function CemberinAlani(/* kodlar buraya */){
-	/* kodlar buraya */
+function CemberinAlani(cemberinYaricapi, pi){
+	let alan = pi * Math.pow(cemberinYaricapi, 2)
+	return alan
 }
 
+console.log(CemberinAlani(15, pi));
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -67,8 +71,6 @@ function CemberinAlani(/* kodlar buraya */){
 			ÖRNEK: sayilar dizisi içerisinde 45 sayısı 3 kere yazılmış. "45 sayısı 3 tekrar edilmiştir" stringini `tekraredensayilar` dizisine aktaracağız.
 			💡 İPUCU: Tekrar edilen sayıları ve kaç kere tekrar edildiğini kaydetmek için bir nesne tanımlamalısınız, bu görevi yapabilmek için en az 2 kere döngü yazmalısınız. Birinci döngüde hangi sayının kaç kere tekrar edildiğini tespit edip, 2. döngüde stringi oluşturup verilen diziye aktarmalısınız.
 	*/
-	
-	
 /*  (oto test yok) sayilar dizisi içinde kaç adet sayı olduğunu konsola yazdırın */
 
 
@@ -77,36 +79,79 @@ function CemberinAlani(/* kodlar buraya */){
 	
 	//3a çözümü
 
-	/* kodlar buraya */
-	
-	
-	
-	// 3b çözümü:
+	var enbuyuk = sayilar[0]
+	var enkucuk = sayilar[0]
 
-	/* kodlar buraya */
-		
-		
-		
+	function en (sayi){
+
+		for(let i = 0 ; i<sayi.length ; i++){
+			if(sayi[i] < enkucuk){
+				enkucuk = sayi[i]
+			}
+			if(sayi[i] > enbuyuk){
+				enbuyuk = sayi[i]
+			}
+		}
+	}
+	
+	console.log("3a: ", en(sayilar));
+	console.log(Math.max(...sayilar), Math.min(...sayilar));
+
+	// 3b çözümü:
+	ucetambolunenler =sayilar.filter(sayi =>{
+			return sayi % 3 ==0
+	})
+
+	console.log ("3b: ", ucetambolunenler);
+	
 	//3c çözümü:
 	
-	/* kodlar buraya */
+	ucebolunenlerintoplami = ucetambolunenler.reduce((total,sayi)=>{
+		return total + sayi;
+	},0);
 
-	
+	console.log("3c: ", ucebolunenlerintoplami);
+
 	
 	//3d çözümü
 	
-	/* kodlar buraya */
+		besyuzdenkucuksayilar = sayilar.filter(sayi =>{
+			return sayi < 500
+		});
 
+		console.log("3d: ", besyuzdenkucuksayilar);
 
 
 	//3e çözümü
 
-	/* kodlar buraya */
+	siralisayilar = [...besyuzdenkucuksayilar.sort(function(a,b) {
+		return a-b
+	})];
+
+	console.log("3e: ", siralisayilar);
 	
 	
 	//3f çözümü
 	
-	/* kodlar buraya */
+	tekraredensayilar= [];
+	let depo = {};
+	sayilar.forEach(sayi =>{
+		if(sayi in depo){
+			depo[sayi]+=1
+		}
+		else{
+			depo[sayi] = 1
+		}
+	})
+	
+	for(let sayi in depo){
+		if(depo[sayi] !=1){
+		tekraredensayilar.push(`${sayi} sayısı ${depo[sayi]} kere tekrar edilmiştir`)
+	}}
+
+
+	console.log(tekraredensayilar);
+
 
 
 
